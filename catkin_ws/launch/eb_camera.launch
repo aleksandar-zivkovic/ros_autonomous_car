@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+	<include file="eb.launch" />
+	<!-- Camera Node -->
+    <node pkg="car_interface" type="picamera_color_detection.py" name="camera_talker_node" output="screen" launch-prefix="xterm -e" />
+</launch>

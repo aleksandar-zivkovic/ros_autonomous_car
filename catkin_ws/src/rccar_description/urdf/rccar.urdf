@@ -1,0 +1,279 @@
+<?xml version="1.0"?>
+<robot name="rccar">
+    <material name="eb_green">
+        <color rgba="0.07 0.92 0.07 1"/>
+    </material>
+    <material name="black">
+        <color rgba="0 0 0 1"/>
+    </material>
+    <!-- Dummy base link -->
+    <link name="base_link"/>
+    <!-- Chassis -->
+    <link name="chassis">
+        <collision>
+            <origin xyz="-0.015 0 0"/>
+            <geometry>
+                <box size="0.37 0.16 0.09"/>
+            </geometry>     
+        </collision>
+        <visual>
+            <origin xyz="-0.015 0 0"/>
+            <geometry>
+                <box size="0.37 0.16 0.09"/>
+            </geometry>     
+            <material name="eb_green"/>
+        </visual>
+        <inertial>
+            <origin xyz="-0.015 0 0"/>
+            <mass value="2"/>
+            <inertia
+                ixx="0.0056" ixy="0.0" ixz="0.0"
+                iyy="0.0241" iyz="0.0"
+                izz="0.0271"/>
+        </inertial>
+    </link>
+    <gazebo reference="chassis">
+        <material>Gazebo/Green</material>
+    </gazebo>
+    <!-- Front axle: very low inertia -->
+    <link name="front_axle">
+        <collision>
+            <origin rpy="1.5708 0 0"/>
+            <geometry>
+                <cylinder length="0.25" radius="0.005"/>
+            </geometry>
+        </collision>
+        <visual>
+            <origin rpy="1.5708 0 0"/>
+            <geometry>
+                <cylinder length="0.25" radius="0.005"/>
+            </geometry>
+            <material name="eb_green"/>
+        </visual>
+        <inertial>
+            <origin rpy="1.5708 0 0"/>
+            <mass value="1e-5"/>
+            <inertia
+                ixx="1e-6" ixy="0.0" ixz="0.0"
+                iyy="1e-6" iyz="0.0"
+                izz="1e-6"/>
+        </inertial>
+    </link>
+    <gazebo reference="front_axle">
+        <material>Gazebo/Green</material>
+    </gazebo>
+
+    <!-- Front left hub: invisible, very low inertia -->
+    <link name="front_left_hub">
+        <inertial>
+            <origin rpy="1.5708 0 0"/>
+            <mass value="1e-5"/>
+            <inertia
+                ixx="1e-6" ixy="0.0" ixz="0.0"
+                iyy="1e-6" iyz="0.0"
+                izz="1e-6"/>
+        </inertial>
+    </link>
+    <!-- Front right hub: invisible, very low inertia -->
+    <link name="front_right_hub">
+        <inertial>
+            <origin rpy="1.5708 0 0"/>
+            <mass value="1e-5"/>
+            <inertia
+                ixx="1e-6" ixy="0.0" ixz="0.0"
+                iyy="1e-6" iyz="0.0"
+                izz="1e-6"/>
+        </inertial>
+    </link>
+    <!-- Front left wheel -->
+    <link name="front_left_wheel">
+        <collision>
+            <origin rpy="1.5708 0 0"/>
+            <geometry>
+                <cylinder length="0.04" radius="0.055"/>
+            </geometry>
+        </collision>
+        <visual>
+            <origin rpy="1.5708 0 0"/>
+            <geometry>
+                <cylinder length="0.04" radius="0.055"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+        <inertial>
+            <origin rpy="1.5708 0 0"/>
+            <mass value="0.1"/>
+            <inertia 
+                ixx="8.896e-5" ixy="0.0" ixz="0.0"
+                iyy="8.896e-5" iyz="0.0"
+                izz="1.515e-4"/>
+        </inertial>
+    </link>
+    <gazebo reference="front_left_wheel">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <!-- Front right wheel -->
+    <link name="front_right_wheel">
+        <collision>
+            <origin rpy="1.5708 0 0"/>
+            <geometry>
+                <cylinder length="0.04" radius="0.055"/>
+            </geometry>
+        </collision>
+        <visual>
+            <origin rpy="1.5708 0 0"/>
+            <geometry>
+                <cylinder length="0.04" radius="0.055"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+        <inertial>
+            <origin rpy="1.5708 0 0"/>
+            <mass value="0.1"/>
+            <inertia 
+                ixx="8.896e-5" ixy="0.0" ixz="0.0"
+                iyy="8.896e-5" iyz="0.0"
+                izz="1.515e-4"/>
+        </inertial>
+    </link>
+    <gazebo reference="front_right_wheel">
+        <material>Gazebo/Black</material>
+    </gazebo>
+    <!-- Rear axle: very low inertia-->
+    <link name="rear_axle">
+        <collision>
+            <origin rpy="1.5708 0 0"/>
+            <geometry>
+                <cylinder length="0.25" radius="0.005"/>
+            </geometry>
+        </collision>
+        <visual>
+            <origin rpy="1.5708 0 0"/>
+            <geometry>
+                <cylinder length="0.25" radius="0.005"/>
+            </geometry>
+            <material name="eb_green"/>
+        </visual>
+        <inertial>
+            <origin rpy="1.5708 0 0"/>
+            <mass value="1e-5"/>
+            <inertia
+                ixx="1e-6" ixy="0.0" ixz="0.0"
+                iyy="1e-6" iyz="0.0"
+                izz="1e-6"/>
+        </inertial>
+    </link>
+    <gazebo reference="rear_axle">
+        <material>Gazebo/Green</material>
+    </gazebo>
+
+    <!-- Rear left wheel -->
+    <link name="rear_left_wheel">
+        <collision>
+            <origin rpy="1.5708 0 0"/>
+            <geometry>
+                <cylinder length="0.04" radius="0.055"/>
+            </geometry>
+        </collision>
+        <visual>
+            <origin rpy="1.5708 0 0"/>
+            <geometry>
+                <cylinder length="0.04" radius="0.055"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+        <inertial>
+            <origin rpy="1.5708 0 0"/>
+            <mass value="0.1"/>
+            <inertia 
+                ixx="8.896e-5" ixy="0.0" ixz="0.0"
+                iyy="8.896e-5" iyz="0.0"
+                izz="1.515e-4"/>
+        </inertial>
+    </link>
+    <gazebo reference="rear_left_wheel">
+        <material>Gazebo/Black</material>
+    </gazebo>
+    <!-- Rear right wheel -->
+    <link name="rear_right_wheel">
+        <collision>
+            <origin rpy="1.5708 0 0"/>
+            <geometry>
+                <cylinder length="0.04" radius="0.055"/>
+            </geometry>
+        </collision>
+        <visual>
+            <origin rpy="1.5708 0 0"/>
+            <geometry>
+                <cylinder length="0.04" radius="0.055"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+        <inertial>
+            <origin rpy="1.5708 0 0"/>
+            <mass value="0.1"/>
+            <inertia 
+                ixx="8.896e-5" ixy="0.0" ixz="0.0"
+                iyy="8.896e-5" iyz="0.0"
+                izz="1.515e-4"/>
+        </inertial>
+    </link>
+    <gazebo reference="rear_right_wheel">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <!-- Joints -->
+    <joint name="base_link_to_chassis" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis"/>
+    </joint>
+    <joint name="chassis_to_front_axle" type="fixed">
+        <parent link="chassis"/>
+        <child link="front_axle"/>
+        <origin xyz="0.17 0 -0.045"/>
+    </joint>
+    <joint name="front_axle_to_front_left_hub" type="revolute">
+        <parent link="front_axle"/>
+        <child link="front_left_hub"/>
+        <origin xyz="0 0.125 0" rpy="0 -0.5 0"/>
+        <axis xyz="0 0 1"/>
+        <limit lower="-0.7854" upper="0.7854" effort="1000" velocity="1"/>
+    </joint>
+    <joint name="front_left_hub_to_front_left_wheel" type="continuous">
+        <parent link="front_left_hub"/>
+        <child link="front_left_wheel"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+    <joint name="front_axle_to_front_right_hub" type="revolute">
+        <parent link="front_axle"/>
+        <child link="front_right_hub"/>
+        <origin xyz="0 -0.125 0" rpy="0 -0.5 0"/>
+        <axis xyz="0 0 1"/>
+        <limit lower="-0.7854" upper="0.7854" effort="1000" velocity="1"/>
+    </joint>
+    <joint name="front_right_hub_to_front_right_wheel" type="continuous">
+        <parent link="front_right_hub"/>
+        <child link="front_right_wheel"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+    <!-- Rear axle rotates around its y-axis -->
+    <joint name="chassis_to_rear_axle" type="continuous">
+        <parent link="chassis"/>
+        <child link="rear_axle"/>
+        <origin xyz="-0.17 0 -0.045"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+    <!-- Rear wheels are fixed to the rear axle -->
+    <joint name="rear_axle_to_rear_left_wheel" type="fixed">
+        <parent link="rear_axle"/>l
+        <child link="rear_left_wheel"/>
+        <origin xyz="0 0.125 0"/>
+    </joint>
+    <joint name="rear_axle_to_rear_right_wheel" type="fixed">
+        <parent link="rear_axle"/>
+        <child link="rear_right_wheel"/>
+        <origin xyz="0 -0.125 0"/>
+    </joint>
+</robot>
+

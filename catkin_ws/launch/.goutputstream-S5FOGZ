@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<launch>
+	<!-- Movement Listener Node -->
+    <node pkg="car_interface" type="MovementListener.py" name="movement_listener_node" output="screen" launch-prefix="xterm -e" />
+    <!-- Movement Talker Node -->
+    <node pkg="car_interface" type="MovementTalker.py" name="movement_talker_node" output="screen" launch-prefix="xterm -e" />
+    <!-- Sensor Interface Node -->
+    <node pkg="car_interface" type="sensor_interface.py" name="sensor_interface_node" output="screen" launch-prefix="xterm -e" />
+    <!-- Bosch IMU Driver Node -->
+    <node pkg="bosch_imu_driver" type="bosch_imu_node.py" name="bosch_imu_node" output="screen" launch-prefix="xterm -e" />
+	<!-- Camera Node -->
+    <node pkg="car_interface" type="bosch_imu_node.py" name="bosch_imu_node" output="screen" launch-prefix="xterm -e" />
+</launch>

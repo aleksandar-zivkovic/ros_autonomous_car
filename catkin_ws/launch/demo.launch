@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- BN055 IMU node -->
+    <include file="$(find bosch_imu_driver)/launch/imu.launch" />
+</launch>

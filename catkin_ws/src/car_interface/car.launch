@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+	<!-- Movement Listener Node -->
+    <node pkg="car_interface" type="movement_listener.py" name="movement_listener_node" output="screen" launch-prefix="xterm -e" />
+    <!-- Movement Talker Node -->
+    <node pkg="car_interface" type="movement_talker.py" name="movement_talker_node" output="screen" launch-prefix="xterm -e" />
+    <!-- Sensor Interface Node -->
+    <node pkg="car_interface" type="sensor_interface.py" name="sensor_interface_node" output="screen" launch-prefix="xterm -e" />
+</launch>
