@@ -96,7 +96,35 @@ def turn_to_target_orientation(int_target_heading):
 
 	cc.stop_and_reset()
 	return
-
+	
+def k_turn_left():
+	int_heading = int(heading)
+	int_target_heading = abs(int_heading - 90)
+	
+	cc.reverse()
+	cc.reverse()
+	while int_heading != int_target_heading:
+		int_heading = int(heading)
+		rospy.loginfo("Int heading: %d" % (int_heading))
+		if (sensor_block_0 or sensor_block_1 or sensor_block_2 or sensor_block_3 or sensor_block_4 or sensor_block_5):
+			cc.stop_and_reset() #remove
+			break
+		else:
+			cc.steer_right()
+			
+	cc.stop_and_reset()
+	
+	int_target_heading = abs(int_heading - 90)
+	cc.more_gas()
+	cc.more_gas()
+	while int_heading != int_target_heading:
+		int_heading = int(heading)
+		if (sensor_block_0 or sensor_block_1 or sensor_block_2 or sensor_block_3 or sensor_block_4 or sensor_block_5):
+			cc.stop_and_reset() #remove
+			break
+		else:
+			cc.steer_left()
+	cc.stop_and_reset()
     
 def movement_callback(movement_msg):
 	
@@ -117,8 +145,8 @@ def movement_callback(movement_msg):
 		turn_to_target_orientation(0)
 	elif movement_msg.command == 'move':
 		move_x_meters(1)
-	#elif movement_msg.command == 'kleft':
-		#k_turn_left()
+	elif movement_msg.command == 'kleft':
+		k_turn_left()
 	#elif movement_msg.command == 'kright':
 		#k_turn_right()
 	elif movement_msg.command == 'reset':
@@ -211,7 +239,7 @@ def imu_message_callback(data):
 	roll = data.roll
 	pitch = data.pitch
 	
-	#print('Heading={0:0.2F} Roll={1:0.2F} Pitch={2:0.2F}'.format(heading, roll, pitch))
+	print('Heading={0:0.2F} Roll={1:0.2F} Pitch={2:0.2F}'.format(heading, roll, pitch))
 	
 	
 def wheels_callback(data):
@@ -223,8 +251,8 @@ def wheels_callback(data):
 	wheel_left = data.left
 	wheel_right = data.right
 	
-	rospy.loginfo("Left wheel: speed=%d, direction=%d, timestamp=%d, distance=%d, abs_distance=%d" % (wheel_left.speed, wheel_left.direction, wheel_left.when, wheel_left.dist, wheel_left.dist_abs))
-	rospy.loginfo("Right wheel: speed=%d, direction=%d, timestamp=%d, distance=%d, abs_distance=%d" % (wheel_right.speed, wheel_right.direction, wheel_right.when, wheel_right.dist, wheel_right.dist_abs))
+	#rospy.loginfo("Left wheel: speed=%d, direction=%d, timestamp=%d, distance=%d, abs_distance=%d" % (wheel_left.speed, wheel_left.direction, wheel_left.when, wheel_left.dist, wheel_left.dist_abs))
+	#rospy.loginfo("Right wheel: speed=%d, direction=%d, timestamp=%d, distance=%d, abs_distance=%d" % (wheel_right.speed, wheel_right.direction, wheel_right.when, wheel_right.dist, wheel_right.dist_abs))
           
 def movement_listener():
 	
